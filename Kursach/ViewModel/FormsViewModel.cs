@@ -43,4 +43,9 @@ public class FormsViewModel : INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+    
+    
+    
+    
+    
 }

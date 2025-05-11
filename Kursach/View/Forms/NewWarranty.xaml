@@ -23,43 +23,44 @@
         <Label Grid.Row="0" Grid.Column="0" Content="Гарантия!!!" FontSize="20"> </Label>
         <Label Grid.Row="1" Grid.Column="0" Content="Id"></Label>
         <TextBox Grid.Row="1" Grid.Column="1"
-                 Text=""
+                 Name="Id"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Ссылка на товар"></Label>
         <TextBox Grid.Row="2" Grid.Column="1"
+                 Name="ProductLink"
                  Text=""
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Ссылка на клиента"></Label>
         <TextBox Grid.Row="3" Grid.Column="1"
-                 Text=""
+                 Name="ClientLink"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Проблема"></Label>
         <TextBox Grid.Row="4" Grid.Column="1"
-                 Text=""
+                 Name="ProblemDescription"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="5" Grid.Column="0" Content="Дата приема"></Label>
         <TextBox Grid.Row="5" Grid.Column="1"
-                 Text=""
+                 Name="AcceptanceDate"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
-        <Label Grid.Row="6" Grid.Column="0" Content="Дата 30"></Label>
+        <Label Grid.Row="6" Grid.Column="0" Content="Дата завершения"></Label>
         <TextBox Grid.Row="6" Grid.Column="1"
-                 Text=""
+                 Name="CompletionDate"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="7" Grid.Column="0" Content="Статус"></Label>
         <TextBox Grid.Row="7" Grid.Column="1"
-                 Text=""
+                 Name="Status"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>

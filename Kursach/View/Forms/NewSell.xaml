@@ -23,43 +23,43 @@
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Проодаажааа" FontSize="20"></Label>
         <Label Grid.Row="1" Grid.Column="0" Content="Id"></Label>
         <TextBox Grid.Row="1" Grid.Column="1"
-            Text=""
+            Name="Id"
             HorizontalAlignment="Left"
             Width="100"
             Height="20"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Ссылка на товар"></Label>
         <TextBox Grid.Row="2" Grid.Column="1"
-                 Text=""
+                 Name="ProductLink"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Ссылка на клиента"></Label>
         <TextBox Grid.Row="3" Grid.Column="1"
-                 Text=""
+                 Name="ClientLink"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Дата продажи"></Label>
         <TextBox Grid.Row="4" Grid.Column="1"
-                 Text=""
+                 Name="SellDate"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="5" Grid.Column="0" Content="Стоимость продажи"></Label>
         <TextBox Grid.Row="5" Grid.Column="1"
-                 Text=""
+                 Name="SellCost"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="6" Grid.Column="0" Content="Тип оплаты"></Label>
         <TextBox Grid.Row="6" Grid.Column="1"
-                 Text=""
+                 Name="PaymentType"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="7" Grid.Column="0" Content="Продавец"></Label>
         <TextBox Grid.Row="7" Grid.Column="1"
-                 Text=""
+                 Name="Seller"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>

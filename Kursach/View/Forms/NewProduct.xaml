@@ -24,49 +24,49 @@
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Проодууктт" FontSize="20"></Label>
         <Label Grid.Row="1" Grid.Column="0" Content="Id"></Label>
         <TextBox Grid.Row="1" Grid.Column="1"
-                 Text=""
+                 Name="Id"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Тип"></Label>
         <TextBox Grid.Row="2" Grid.Column="1"
-                 Text=""
+                 Name="Type"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Бренд"></Label>
         <TextBox Grid.Row="3" Grid.Column="1"
-                 Text=""
+                 Name="Brabd"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Модель"></Label>
         <TextBox Grid.Row="4" Grid.Column="1"
-                 Text=""
+                 Name="Model"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="5" Grid.Column="0" Content="Серийный номер"></Label>
         <TextBox Grid.Row="5" Grid.Column="1"
-                 Text=""
+                 Name="SerialNumber"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="6" Grid.Column="0" Content="Цена"></Label>
         <TextBox Grid.Row="6" Grid.Column="1"
-                 Text=""
+                 Name="Cost"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="7" Grid.Column="0" Content="Кол-во на складе"></Label>
         <TextBox Grid.Row="7" Grid.Column="1"
-                 Text=""
+                 Name="QuantityInStock"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
         <Label Grid.Row="8" Grid.Column="0" Content="Гарантийный срок"></Label>
         <TextBox Grid.Row="8" Grid.Column="1"
-                 Text=""
+                 Name="WarrantyPeriod"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
