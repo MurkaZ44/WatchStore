@@ -10,7 +10,4 @@ public class Supplier : ISupplier
     public string Phone;
     public string Email;
     public string SupplyHistory;
-    
-    
-    
 }
