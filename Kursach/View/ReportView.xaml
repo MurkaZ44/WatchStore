@@ -4,9 +4,89 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Kursach.View"
+      xmlns:viewModel="clr-namespace:Kursach.ViewModel"
+      xmlns:oxy="http://oxyplot.org/wpf"
       mc:Ignorable="d"
-      d:DesignWidth="800" d:DesignHeight="450">
-    <Grid>
-        <TextBlock Text="Меню отчетов ЗАГЛУШКА"> </TextBlock>
+      d:DesignWidth="900" d:DesignHeight="600">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModel:ReportsViewModel/>
+    </UserControl.DataContext>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Отчёт по продажам"
+                   FontSize="24"
+                   FontWeight="Bold"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10">
+            <TextBlock Text="Начальная дата:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <DatePicker SelectedDate="{Binding StartDate}" Width="120" Margin="0,0,10,0"/>
+            <TextBlock Text="Конечная дата:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <DatePicker SelectedDate="{Binding EndDate}" Width="120" Margin="0,0,10,0"/>
+            <Button Content="Построить отчет" Command="{Binding GenerateReportCommand}" Padding="10,5"/>
+        </StackPanel>
+
+        <TabControl Grid.Row="2" Margin="0,15,0,0">
+            <TabItem Header="Продажи по моделям">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <UniformGrid Grid.Row="0" Columns="3" Margin="0,0,0,20" HorizontalAlignment="Stretch">
+                        <Border Background="#E3F2FD" CornerRadius="8" Padding="15" Margin="5">
+                            <StackPanel>
+                                <TextBlock Text="Выручка"
+                                           FontSize="14"
+                                           Foreground="#1565C0"/>
+                                <TextBlock Text="{Binding TotalRevenue, StringFormat={}{0:N2} ₽}"
+                                           FontSize="20"
+                                           FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#E8F5E9" CornerRadius="8" Padding="15" Margin="5">
+                            <StackPanel>
+                                <TextBlock Text="Количество продаж"
+                                           FontSize="14"
+                                           Foreground="#2E7D32"/>
+                                <TextBlock Text="{Binding TotalSales}"
+                                           FontSize="20"
+                                           FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#FFF8E1" CornerRadius="8" Padding="15" Margin="5">
+                            <StackPanel>
+                                <TextBlock Text="Средний чек"
+                                           FontSize="14"
+                                           Foreground="#FF8F00"/>
+                                <TextBlock Text="{Binding AverageCheck, StringFormat={}{0:N2} ₽}"
+                                           FontSize="20"
+                                           FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                    </UniformGrid>
+
+                    <oxy:PlotView Grid.Row="1" Model="{Binding PlotModel}" />
+                    <TextBlock Grid.Row="1" Text="Недостаточно данных для построения графика"
+                               FontSize="16"
+                               Foreground="Gray"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Visibility="{Binding HasData, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=False}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Динамика продаж">
+                <oxy:PlotView Model="{Binding SalesDynamicsPlotModel}" />
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

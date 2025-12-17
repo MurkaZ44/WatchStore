@@ -6,63 +6,83 @@
       xmlns:local="clr-namespace:Kursach.View.Forms">
     <Grid>
         <Grid.RowDefinitions>
-        <RowDefinition Height="40"/>
-        <RowDefinition Height="30"/>
-        <RowDefinition Height="30"/>
-        <RowDefinition Height="30"/>  
-        <RowDefinition Height="30"/>
-        <RowDefinition Height="30"/>
-        <RowDefinition Height="30"/>
-        <RowDefinition Height="30"/>
-        <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="240"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Проодаажааа" FontSize="20"></Label>
-        <Label Grid.Row="1" Grid.Column="0" Content="Id"></Label>
-        <TextBox Grid.Row="1" Grid.Column="1"
-            Name="Id"
-            HorizontalAlignment="Left"
-            Width="100"
-            Height="20"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Ссылка на товар"></Label>
-        <TextBox Grid.Row="2" Grid.Column="1"
-                 Name="ProductLink"
-                 HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="Ссылка на клиента"></Label>
-        <TextBox Grid.Row="3" Grid.Column="1"
-                 Name="ClientLink"
-                 HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="Дата продажи"></Label>
+        
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Оформление продажи" FontSize="20" FontWeight="Bold"></Label>
+        
+        <Label Grid.Row="1" Grid.Column="0" Content="Товар"></Label>
+        <TextBlock Grid.Row="1" Grid.Column="1"
+                   Text="{Binding SelectedProductDisplay}"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"
+                   FontSize="14"/>
+        
+        <Label Grid.Row="2" Grid.Column="0" Content="Клиент"></Label>
+        <ComboBox Grid.Row="2" Grid.Column="1"
+                  ItemsSource="{Binding Clients}"
+                  SelectedItem="{Binding SelectedClient}"
+                  DisplayMemberPath="FullName"
+                  HorizontalAlignment="Left"
+                  Width="200"
+                  Height="25"/>
+        
+        <Label Grid.Row="3" Grid.Column="0" Content="Дата продажи"></Label>
+        <DatePicker Grid.Row="3" Grid.Column="1"
+                    SelectedDate="{Binding SaleDate}"
+                    HorizontalAlignment="Left"
+                    Width="200"
+                    Height="25"/>
+        
+        <Label Grid.Row="4" Grid.Column="0" Content="Стоимость продажи"></Label>
         <TextBox Grid.Row="4" Grid.Column="1"
-                 Name="SellDate"
+                 Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="5" Grid.Column="0" Content="Стоимость продажи"></Label>
+                 Width="200"
+                 Height="25"/>
+        
+        <Label Grid.Row="5" Grid.Column="0" Content="Количество"></Label>
         <TextBox Grid.Row="5" Grid.Column="1"
-                 Name="SellCost"
+                 Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
+                 Width="200"
+                 Height="25"/>
+        
         <Label Grid.Row="6" Grid.Column="0" Content="Тип оплаты"></Label>
-        <TextBox Grid.Row="6" Grid.Column="1"
-                 Name="PaymentType"
-                 HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
+        <ComboBox Grid.Row="6" Grid.Column="1"
+                  ItemsSource="{Binding PaymentTypes}"
+                  SelectedItem="{Binding PaymentType}"
+                  HorizontalAlignment="Left"
+                  Width="200"
+                  Height="25"/>
+        
         <Label Grid.Row="7" Grid.Column="0" Content="Продавец"></Label>
-        <TextBox Grid.Row="7" Grid.Column="1"
-                 Name="Seller"
-                 HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Button Grid.Row="8" Grid.ColumnSpan="2" Content="ГООООЙДААА!!!"/>
+        <ComboBox Grid.Row="7" Grid.Column="1"
+                  ItemsSource="{Binding Sellers}"
+                  SelectedItem="{Binding SelectedSeller}"
+                  DisplayMemberPath="Name"
+                  HorizontalAlignment="Left"
+                  Width="200"
+                  Height="25"/>
+        
+        <Button Grid.Row="8" Grid.ColumnSpan="2"
+                Content="Сохранить продажу"
+                Command="{Binding SaveCommand}"
+                FontSize="14"
+                Height="35"
+                Width="350"
+                Margin="0,10,0,0"/>
     </Grid>
 </UserControl>

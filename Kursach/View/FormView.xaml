@@ -7,46 +7,178 @@
       xmlns:local="clr-namespace:Kursach.View"
       xmlns:viewModel="clr-namespace:Kursach.ViewModel"
       mc:Ignorable="d"
-      d:DesignWidth="800" d:DesignHeight="450">
-<UserControl.DataContext>
-    <viewModel:FormsViewModel/>
-</UserControl.DataContext>
+      d:DesignWidth="1000" d:DesignHeight="700">
+    <UserControl.DataContext>
+        <viewModel:FormsViewModel/>
+    </UserControl.DataContext>
     
-    <Grid Margin="30,50,0,50">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <Grid Margin="20">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="0.2*"/>
         </Grid.ColumnDefinitions>
-           
-        <Button Grid.Column="0" Grid.Row="0"
-                Content="Добавление товара" FontSize="20"
-                Command="{Binding FormCommand }"
-                CommandParameter="Product"/>
-        <Button Grid.Column="0" Grid.Row="2"
-                Content="Добавление клиента" FontSize="20"
-                Command="{Binding FormCommand }"
-                CommandParameter="Client" />
-        <Button Grid.Column="0" Grid.Row="4"
-                Content="Оформление продажи" FontSize="20"
-                Command="{Binding FormCommand}"
-                CommandParameter="Sell"/>
-        <Button Grid.Column="0" Grid.Row="6"
-                Content="Учет гарантии" FontSize="20"
-                Command="{Binding FormCommand}"
-                CommandParameter="Warranty"/>
+        
+        <!-- Левая панель с кнопками -->
+        <Border Grid.Column="0" 
+                Background="#F5F5F5" 
+                BorderBrush="#E0E0E0" 
+                BorderThickness="0,0,1,0"
+                Padding="10">
+            <StackPanel>
+                <TextBlock Text="Формы" 
+                           FontSize="18" 
+                           FontWeight="Bold" 
+                           Margin="0,0,0,15"
+                           Foreground="#333"/>
+                
+                <Button Content="Добавление товара" 
+                        FontSize="16"
+                        Height="50"
+                        Margin="0,0,0,10"
+                        Command="{Binding FormCommand}"
+                        CommandParameter="Product"
+                        Background="#1976D2"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#1976D2"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1565C0"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
+                <Button Content="Добавление клиента" 
+                        FontSize="16"
+                        Height="50"
+                        Margin="0,0,0,10"
+                        Command="{Binding FormCommand}"
+                        CommandParameter="Client"
+                        Background="#1976D2"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#1976D2"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1565C0"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
+                <Button Content="Оформление продажи" 
+                        FontSize="16"
+                        Height="50"
+                        Margin="0,0,0,10"
+                        Command="{Binding FormCommand}"
+                        CommandParameter="Sell"
+                        Background="#1976D2"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#1976D2"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1565C0"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
+                <Button Content="Учет гарантии" 
+                        FontSize="16"
+                        Height="50"
+                        Margin="0,0,0,10"
+                        Command="{Binding FormCommand}"
+                        CommandParameter="Warranty"
+                        Background="#1976D2"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#1976D2"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1565C0"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
+                <Button Content="Добавление продавца"
+                        FontSize="16"
+                        Height="50"
+                        Margin="0,0,0,10"
+                        Command="{Binding FormCommand}"
+                        CommandParameter="Seller"
+                        Background="#1976D2"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#1976D2"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1565C0"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
 
-        <ContentControl Grid.RowSpan="7" Grid.Column="2" Content="{Binding CurrentView}"/>
+                <Button Content="Добавление поставщика"
+                        FontSize="16"
+                        Height="50"
+                        Margin="0,0,0,10"
+                        Command="{Binding FormCommand}"
+                        CommandParameter="Supplier"
+                        Background="#1976D2"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#1976D2"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1565C0"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+            </StackPanel>
+        </Border>
+        
+        <!-- Область для отображения формы -->
+        <Border Grid.Column="2" 
+                Background="White"
+                Padding="20">
+            <ContentControl Content="{Binding CurrentView}"/>
+        </Border>
         
     </Grid>
 </UserControl>

@@ -5,21 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kursach"
         xmlns:views="clr-namespace:Kursach.View"
+        xmlns:viewModels="clr-namespace:Kursach.ViewModel"
         mc:Ignorable="d"
         Icon="/Media/watch.ico"
-        Title="WatchStore" Height="500" Width="900"
+        Title="WatchStore" Height="700" Width="1000"
         MinHeight="500"
         MinWidth="900">
     <Grid>
-        <TabControl>
+        <TabControl x:Name="MainTabControl">
             <TabItem Header="Главное окно">
-        <views:MainView></views:MainView>
+                <views:MainView></views:MainView>
             </TabItem>
             <TabItem Header="Формы">
-                <views:FormView></views:FormView>
+                <views:FormView x:Name="FormsView"></views:FormView>
             </TabItem>
             <TabItem Header="Отчеты">
                 <views:ReportView></views:ReportView>
+            </TabItem>
+            <TabItem Header="Клиенты">
+                <views:ClientListView/>
+            </TabItem>
+            <TabItem Header="Скидки">
+                <views:DiscountsView/>
             </TabItem>
         </TabControl>
         

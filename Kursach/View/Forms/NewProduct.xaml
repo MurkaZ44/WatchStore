@@ -15,61 +15,104 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/> <!-- New row for IsPremiumBrand -->
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Проодууктт" FontSize="20"></Label>
-        <Label Grid.Row="1" Grid.Column="0" Content="Id"></Label>
+        <Label Grid.Row="0" Grid.ColumnSpan="2"
+               Content="{Binding FormTitle}"
+               FontSize="20" FontWeight="Bold"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Тип"></Label>
         <TextBox Grid.Row="1" Grid.Column="1"
-                 Name="Id"
+                 Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Тип"></Label>
+                 Width="200"
+                 Height="25"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Бренд"></Label>
         <TextBox Grid.Row="2" Grid.Column="1"
-                 Name="Type"
+                 Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="Бренд"></Label>
+                 Width="200"
+                 Height="25"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Модель"></Label>
         <TextBox Grid.Row="3" Grid.Column="1"
-                 Name="Brabd"
+                 Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="Модель"></Label>
+                 Width="200"
+                 Height="25"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Серийный номер"></Label>
         <TextBox Grid.Row="4" Grid.Column="1"
-                 Name="Model"
+                 Text="{Binding SerialNumber, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="5" Grid.Column="0" Content="Серийный номер"></Label>
+                 Width="200"
+                 Height="25"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Цена"></Label>
         <TextBox Grid.Row="5" Grid.Column="1"
-                 Name="SerialNumber"
+                 Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="6" Grid.Column="0" Content="Цена"></Label>
+                 Width="200"
+                 Height="25"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Кол-во на складе"></Label>
         <TextBox Grid.Row="6" Grid.Column="1"
-                 Name="Cost"
+                 Text="{Binding QuantityInStock, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="7" Grid.Column="0" Content="Кол-во на складе"></Label>
+                 Width="200"
+                 Height="25"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="Гарантийный срок (мес.)"></Label>
         <TextBox Grid.Row="7" Grid.Column="1"
-                 Name="QuantityInStock"
+                 Text="{Binding WarrantyPeriod, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Label Grid.Row="8" Grid.Column="0" Content="Гарантийный срок"></Label>
-        <TextBox Grid.Row="8" Grid.Column="1"
-                 Name="WarrantyPeriod"
+                 Width="200"
+                 Height="25"/>
+        
+        <Label Grid.Row="8" Grid.Column="0" Content="Поставщик"></Label>
+        <ComboBox Grid.Row="8" Grid.Column="1"
+                  ItemsSource="{Binding Suppliers}"
+                  SelectedItem="{Binding SelectedSupplier}"
+                  DisplayMemberPath="Name"
+                  HorizontalAlignment="Left"
+                  Width="200"
+                  Height="25"/>
+       
+       <Label Grid.Row="9" Grid.Column="0" Content="Премиум бренд"></Label>
+       <CheckBox Grid.Row="9" Grid.Column="1"
+                 IsChecked="{Binding IsPremiumBrand, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left"
-                 Width="100"
-                 Height="20"/>
-        <Button Grid.Row="9" Grid.ColumnSpan="2" Content="ГООООЙДААА!!!"/>
+                 VerticalAlignment="Center"/>
+
+       <Label Grid.Row="10" Grid.Column="0" Content="Изображение"></Label>
+       <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Vertical">
+           <Button Content="Выбрать изображение"
+                   Command="{Binding SelectImageCommand}"
+                   HorizontalAlignment="Left"
+                   Width="150"
+                   Height="30"
+                   Margin="0,0,0,10"/>
+           <Border BorderBrush="#CCCCCC"
+                   BorderThickness="1"
+                   Background="#F5F5F5"
+                   Width="150"
+                   Height="100"
+                   HorizontalAlignment="Left">
+               <Image Source="{Binding ImagePreviewPath}"
+                      Width="150"
+                      Height="100"
+                      Stretch="Uniform"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"/>
+           </Border>
+       </StackPanel>
+       
+       <Button Grid.Row="12" Grid.ColumnSpan="2"
+               Content="Сохранить"
+               Command="{Binding SaveCommand}"
+               FontSize="14"
+               Height="35"
+               Margin="0,10,0,0"/>
     </Grid>
 </UserControl>
