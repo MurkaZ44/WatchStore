@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 public partial class DiscountsViewModel : ObservableObject
@@ -115,6 +116,42 @@ public partial class DiscountsViewModel : ObservableObject
         ExpectedProfitText = $"Прогноз продаж: {predictedSales} шт., выручка ~ {revenue:F2} ₽";
     }
 
+    [RelayCommand]
+    private async Task CancelDiscount()
+    {
+        if (SelectedProduct == null)
+            return;
+
+        // 1. Set DiscountedPrice and AppliedDiscount of SelectedProduct to null
+        SelectedProduct.DiscountedPrice = null;
+        SelectedProduct.AppliedDiscount = null;
+
+        // 2. Retrieve the corresponding Product model from the database
+        var product = await _productRepository.GetByIdAsync(SelectedProduct.Id);
+        if (product == null)
+        {
+            System.Windows.MessageBox.Show("Товар не найден в базе данных.", "Ошибка", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            return;
+        }
+
+        // 3. Update DiscountedPrice and AppliedDiscount of the retrieved Product model to null
+        product.DiscountedPrice = null;
+        product.AppliedDiscount = null;
+
+        // 4. Persist these changes to the database
+        await _productRepository.UpdateAsync(product);
+
+        // 5. Call OnPropertyChanged() for DiscountedPrice and AppliedDiscount on the SelectedProduct
+        OnPropertyChanged(nameof(SelectedProduct)); // This will notify for all properties of SelectedProduct
+
+        // 6. Refresh the list of products
+        LoadProductsAsync();
+        
+        System.Windows.MessageBox.Show($"Скидка для {SelectedProduct.DisplayName} отменена.", "Отмена скидки", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    private bool CanCancelDiscount() => SelectedProduct != null && (SelectedProduct.AppliedDiscount != null || SelectedProduct.DiscountedPrice != null);
+
     private bool CanCalculateDiscount() => SelectedProduct != null;
     
     [RelayCommand]
@@ -127,9 +164,14 @@ public partial class DiscountsViewModel : ObservableObject
         if (product == null)
             return;
 
+        Debug.WriteLine($"[DEBUG] ApplyDiscount: Before DB update - Product ID: {product.Id}, Current AppliedDiscount: {product.AppliedDiscount}, Current DiscountedPrice: {product.DiscountedPrice}");
+        Debug.WriteLine($"[DEBUG] ApplyDiscount: _lastCalcululatedDiscount: {_lastCalculatedDiscount.Value}");
+
         product.AppliedDiscount = _lastCalculatedDiscount;
         product.DiscountedPrice = product.Price * (decimal)(1 - _lastCalculatedDiscount.Value);
         _context.SaveChanges();
+        
+        Debug.WriteLine($"[DEBUG] ApplyDiscount: After DB update - Product ID: {product.Id}, New AppliedDiscount: {product.AppliedDiscount}, New DiscountedPrice: {product.DiscountedPrice}");
 
         // Найти MainViewModel и обновить товары
         var mainWindow = App.Current.MainWindow as MainWindow;
@@ -143,6 +185,18 @@ public partial class DiscountsViewModel : ObservableObject
         }
 
         ExpectedProfitText += "\nСкидка применена, каталог обновлён.";
+        
+        // Update the SelectedProduct DTO with the applied discount
+        if (SelectedProduct != null)
+        {
+            Debug.WriteLine($"[DEBUG] ApplyDiscount: Before DTO update - SelectedProduct ID: {SelectedProduct.Id}, Current AppliedDiscount: {SelectedProduct.AppliedDiscount}, Current DiscountedPrice: {SelectedProduct.DiscountedPrice}");
+
+            SelectedProduct.AppliedDiscount = _lastCalculatedDiscount;
+            SelectedProduct.DiscountedPrice = product.DiscountedPrice;
+            OnPropertyChanged(nameof(SelectedProduct)); // Notify UI of change
+            
+            Debug.WriteLine($"[DEBUG] ApplyDiscount: After DTO update - SelectedProduct ID: {SelectedProduct.Id}, New AppliedDiscount: {SelectedProduct.AppliedDiscount}, New DiscountedPrice: {SelectedProduct.DiscountedPrice}");
+        }
     }
 
     private static T? FindVisualChild<T>(DependencyObject parent) where T : DependencyObject

@@ -12,4 +12,6 @@ public class DiscountProductDto
 
     // Простая оценка «возраста» товара по продажам:
     public int TotalSalesCount { get; set; }
+    public double? AppliedDiscount { get; set; }
+    public decimal? DiscountedPrice { get; set; }
 }

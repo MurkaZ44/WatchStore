@@ -13,15 +13,23 @@ public class AppDbContext : DbContext
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<WarrantyService> WarrantyServices { get; set; }
     public DbSet<Seller> Sellers { get; set; }
-    
+
+    // Конструктор для тестов (InMemory database)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    {
+    }
+
+    // Конструктор по умолчанию для приложения
     public AppDbContext()
     {
-        // Database.EnsureCreated(); // Убираем, чтобы не мешать миграциям в будущем
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlite("Data Source=watchstore.db");
+        if (!options.IsConfigured)
+        {
+            options.UseSqlite("Data Source=watchstore.db");
+        }
     }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

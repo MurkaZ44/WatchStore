@@ -1,17 +1,23 @@
 <UserControl x:Class="Kursach.View.DiscountsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:Kursach.ViewModel"
              xmlns:viewModel1="clr-namespace:Kursach.ViewModel"
              xmlns:view="clr-namespace:Kursach.View"
-             mc:Ignorable="d" 
+             xmlns:converters="clr-namespace:Kursach.Converters"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.DataContext>
         <view:DiscountsViewModel/>
     </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <view:DiscountsViewModel x:Key="DiscountsViewModel"/>
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+    </UserControl.Resources>
     
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -57,6 +63,12 @@
                         Command="{Binding ApplyDiscountCommand}"
                         Margin="0,10,0,0"
                         Width="220" Height="30"/>
+
+                <Button Content="Отменить скидку"
+                        Command="{Binding CancelDiscountCommand}"
+                        Margin="0,10,0,0"
+                        Width="220" Height="30"
+                        Visibility="{Binding SelectedProduct.AppliedDiscount, Converter={StaticResource NullToVisibilityConverter}}"/>
 
                 <TextBlock Text="{Binding CalculatedDiscountText}"
                            Margin="0,10,0,0"

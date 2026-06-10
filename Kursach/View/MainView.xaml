@@ -159,7 +159,7 @@
                                 Margin="10"
                                 Padding="15"
                                 Width="250"
-                                Height="400">
+                                Height="450">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="120"/>
@@ -252,26 +252,27 @@
                                             Margin="0,0,0,5"
                                             Cursor="Hand"/>
 
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="Изменить"
-                                                Command="{Binding DataContext.EditProductCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"
-                                                Background="#FFA000"
-                                                Foreground="White"
-                                                FontSize="12"
-                                                Padding="8,3"
-                                                Margin="0,0,5,0"
-                                                Cursor="Hand"/>
 
-                                        <Button Content="Удалить"
-                                                Command="{Binding DataContext.DeleteProductCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                CommandParameter="{Binding}"
-                                                Background="#D32F2F"
-                                                Foreground="White"
-                                                FontSize="12"
-                                                Padding="8,3"
-                                                Cursor="Hand"/>
-                                    </StackPanel>
+                                      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                          <Button Content="Изменить"
+                                                  Command="{Binding DataContext.EditProductCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                  CommandParameter="{Binding}"
+                                                  Background="#FFA000"
+                                                  Foreground="White"
+                                                  FontSize="12"
+                                                  Padding="8,3"
+                                                  Margin="0,0,5,0"
+                                                  Cursor="Hand"/>
+
+                                          <Button Content="Удалить"
+                                                  Command="{Binding DataContext.DeleteProductCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                  CommandParameter="{Binding}"
+                                                  Background="#D32F2F"
+                                                  Foreground="White"
+                                                  FontSize="12"
+                                                  Padding="8,3"
+                                                  Cursor="Hand"/>
+                                      </StackPanel>
                                 </StackPanel>
 
                             </Grid>

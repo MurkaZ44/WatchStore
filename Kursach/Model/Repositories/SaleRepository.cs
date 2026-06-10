@@ -1,6 +1,5 @@
 using Kursach.Model.Models;
 using Microsoft.EntityFrameworkCore;
-
 namespace Kursach.Model.Repositories;
 
 public class SaleRepository
@@ -17,6 +16,7 @@ public class SaleRepository
         return await _context.Sales
             .Include(s => s.Product)
             .Include(s => s.Client)
+            .Include(s => s.Seller)
             .ToListAsync();
     }
 

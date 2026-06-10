@@ -64,6 +64,6 @@
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
-        <Button Grid.Row="8" Grid.ColumnSpan="2" Content="ГООООЙДААА!!!"/>
+        <Button Grid.Row="8" Grid.ColumnSpan="2" Content=""/>
     </Grid>
 </UserControl>

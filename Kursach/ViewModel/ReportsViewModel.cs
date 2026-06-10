@@ -86,14 +86,13 @@ public partial class ReportsViewModel : ObservableObject
         try
         {
             var allSales = await _saleRepository.GetAllAsync();
-
+            
             var sales = allSales
                 .Where(s => s.Date.Date >= StartDate.Date && s.Date.Date <= EndDate.Date)
                 .ToList();
 
             _totalSales = sales.Count;
             
-            // ИСПРАВЛЕНИЕ: Используем строго типизированный класс ProductSaleData вместо анонимного типа
             var groupedByProduct = sales
                 .GroupBy(s => s.Product?.Model ?? "Unknown Model")
                 .Select(g => new ProductSaleData
@@ -132,7 +131,7 @@ public partial class ReportsViewModel : ObservableObject
         }
     }
 
-    // ИСПРАВЛЕНИЕ: Метод теперь принимает List<ProductSaleData>
+    //Метод принимает List<ProductSaleData>
     private PlotModel CreateProductSalesPlot(List<ProductSaleData> groupedByProduct)
     {
         var plotModel = new PlotModel { Title = "Продажи часов по типу" };

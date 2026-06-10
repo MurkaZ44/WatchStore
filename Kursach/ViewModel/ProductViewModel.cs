@@ -92,6 +92,7 @@ public partial class ProductViewModel : ObservableObject
     [ObservableProperty]
     private string _imagePreviewPath = string.Empty;
 
+
     [ObservableProperty]
     private List<Supplier> _suppliers = new();
 
@@ -244,4 +245,5 @@ public partial class ProductViewModel : ObservableObject
                int.TryParse(WarrantyPeriod, out _) &&
                SelectedSupplier != null;
     }
+
 }
